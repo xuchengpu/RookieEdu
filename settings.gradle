@@ -1,0 +1,8 @@
+rootProject.name='CaiNiao'
+include ':app'
+include ':common'
+include ':login'
+include ':home'
+include ':course'
+include ':mine'
+include ':study'

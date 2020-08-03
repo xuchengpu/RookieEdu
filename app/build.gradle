@@ -1,0 +1,17 @@
+apply plugin: 'com.android.application'
+apply from: '../dependencies.gradle'
+
+android {
+    defaultConfig {
+        applicationId "com.cainiao.app"
+    }
+}
+
+dependencies {
+    implementation project(path: ':common')
+    implementation project(path: ':login')
+    implementation project(path: ':mine')
+    implementation project(path: ':course')
+    implementation project(path: ':study')
+    implementation project(path: ':home')
+}
