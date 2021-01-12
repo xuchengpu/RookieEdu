@@ -108,5 +108,7 @@ dependencies {
     //region arouter
     implementation 'com.alibaba:arouter-api:1.5.1'
     kapt 'com.alibaba:arouter-compiler:1.5.1'
+    //liveData eventBus
+    implementation 'com.jeremyliao:live-event-bus-x:1.7.2'
     //endregion
 }
