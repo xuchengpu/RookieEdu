@@ -16,19 +16,35 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
+
+
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+                //room 的scheme 生成schema文件，便于查看数据库创建表的详细信息
+                arg("room.schemaLocation": "$projectDir/schemas".toString())
+            }
+        }
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
-    dataBinding {
-        enabled true
+//AndroidStudio 4 以下使用这种方式配置dataBinding
+//    dataBinding {
+//        enabled true
+//    }
+    //AS4 以上版本使用这个配置dataBinding
+    buildFeatures{
+        dataBinding=true
     }
-
     compileOptions {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
@@ -89,6 +105,8 @@ dependencies {
     androidTestImplementation 'androidx.test:core-ktx:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     //endregion
-
-
+    //region arouter
+    implementation 'com.alibaba:arouter-api:1.5.1'
+    kapt 'com.alibaba:arouter-compiler:1.5.1'
+    //endregion
 }
