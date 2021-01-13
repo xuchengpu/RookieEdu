@@ -1,6 +1,7 @@
 package com.cainiao.common
 
 import android.app.Application
+import com.didichuxing.doraemonkit.DoraemonKit
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -11,7 +12,7 @@ import org.koin.core.logger.Level
  * qq:1550540124
  * 热爱生活每一天！
  */
-class BaseApplication :Application() {
+abstract class BaseApplication :Application() {
     override fun onCreate() {
         super.onCreate()
         startKoin {
@@ -19,5 +20,6 @@ class BaseApplication :Application() {
             androidContext(this@BaseApplication)
             modules()
         }
+        DoraemonKit.install(this,"pId");
     }
 }

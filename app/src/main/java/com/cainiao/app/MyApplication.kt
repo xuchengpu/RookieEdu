@@ -2,13 +2,14 @@ package com.cainiao.app
 
 import android.app.Application
 import com.alibaba.android.arouter.launcher.ARouter
+import com.cainiao.common.BaseApplication
 
 /**
  * Created by 许成谱 on 2021/1/12 15:58.
  * qq:1550540124
  * 热爱生活每一天！
  */
-class MyApplication:Application() {
+class MyApplication:BaseApplication() {
     override fun onCreate() {
         super.onCreate()
         if (BuildConfig.DEBUG) {           // These two lines must be written before init, otherwise these configurations will be invalid in the init process
