@@ -20,6 +20,6 @@ abstract class BaseApplication :Application() {
             androidContext(this@BaseApplication)
             modules()
         }
-
+        DoraemonKit.install(this, mutableListOf(),"cainiao");
     }
 }
