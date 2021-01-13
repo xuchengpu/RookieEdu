@@ -9,12 +9,14 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.didichuxing.doraemonkit.DoraemonKit
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        DoraemonKit.install(application, mutableListOf(),"cainiao");
 //        val navView: BottomNavigationView = findViewById(R.id.nav_view)
 //
 //        val navController = findNavController(R.id.nav_host_fragment)
