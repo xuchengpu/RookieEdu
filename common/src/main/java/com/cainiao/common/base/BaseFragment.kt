@@ -57,7 +57,6 @@ abstract class BaseFragment : Fragment {
      */
     open fun initData() {
         LogUtils.d("${this.javaClass.simpleName} 初始化 initData")
-
     }
     abstract fun bindView(view:View,savedInstanceState: Bundle?):ViewDataBinding?
 

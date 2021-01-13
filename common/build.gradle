@@ -7,6 +7,10 @@ android {
 
 dependencies {
     //from dependencies.gradle
+
+    //Androidx Jetpack最新的startUp组件
+    api('androidx.startup:startup-runtime:1.0.0-alpha03')
+
     //okhttp
     implementation("com.squareup.okhttp3:okhttp:4.8.1")
     implementation("com.squareup.okhttp3:logging-interceptor:4.8.1")
@@ -23,6 +27,8 @@ dependencies {
 
     //utils
     api 'com.blankj:utilcodex:1.29.0'
+    //coil
+    implementation("io.coil-kt:coil:0.13.0")
 
     //腾讯的key-value
     implementation("com.tencent:mmkv-static:1.2.1")
