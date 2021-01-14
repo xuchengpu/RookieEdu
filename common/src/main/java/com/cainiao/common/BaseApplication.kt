@@ -15,11 +15,23 @@ import org.koin.core.logger.Level
 abstract class BaseApplication :Application() {
     override fun onCreate() {
         super.onCreate()
+        initConfig()
+        initData()
+    }
+
+    /**
+     * 配置初始化
+     */
+    protected open fun initConfig(){
         startKoin {
             androidLogger(level = Level.ERROR)//log level Error方能保证这句话不会报错，要么就不写这个
             androidContext(this@BaseApplication)
             modules()
         }
-        DoraemonKit.install(this, mutableListOf(),"cainiao");
     }
+
+    /**
+     * 数据初始化
+     */
+    protected open fun initData(){}
 }

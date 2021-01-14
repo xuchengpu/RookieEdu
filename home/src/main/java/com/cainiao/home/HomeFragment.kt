@@ -16,8 +16,6 @@ class HomeFragment :BaseFragment(){
         return FragmentHomeBinding.bind(view)
     }
 
-    override fun getLayoutRes(): Int {
-        return R.layout.fragment_home
-    }
+    override fun getLayoutRes()=R.layout.fragment_home
 
 }
