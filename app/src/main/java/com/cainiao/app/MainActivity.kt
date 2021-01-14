@@ -14,27 +14,13 @@ import com.cainiao.common.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
-//region
-    //BottomNavigationView原始用法使用示例
-/*
-            val navView: BottomNavigationView = findViewById(R.id.nav_view)
-
-        val navController = findNavController(R.id.nav_host_fragment)
-//     Passing each menu ID as a set of Ids because each
-//     menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications))
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)*/
-    //endregion
     override fun getLayoutRes(): Int {
         return R.layout.activity_main
     }
 
     override fun initView() {
         super.initView()
-        val navController = findNavController(R.id.fcv_main)
-        bnv_main.setupWithNavController(navController)
+
     }
 
     override fun initConfig() {
