@@ -11,7 +11,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.cainiao.app.databinding.ActivityMainBinding
 import com.cainiao.common.base.BaseActivity
-import com.didichuxing.doraemonkit.DoraemonKit
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 //region
@@ -33,6 +33,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun initView() {
         super.initView()
+        val navController = findNavController(R.id.fcv_main)
+        bnv_main.setupWithNavController(navController)
     }
 
     override fun initConfig() {

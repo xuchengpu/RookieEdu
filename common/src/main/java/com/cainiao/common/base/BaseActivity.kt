@@ -17,11 +17,12 @@ import com.cainiao.common.ktx.viewLifeCycleOwner
  * qq:1550540124
  * 热爱生活每一天！
  */
-abstract class BaseActivity<T:ViewDataBinding> : AppCompatActivity {
+abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity {
     /**
      * 无参构造函数
      */
     constructor() : super()
+
     /**
      * 可以填入layout布局的构造函数，使用viewBinding的方便
      * [layout] layout布局文件的id
@@ -29,12 +30,12 @@ abstract class BaseActivity<T:ViewDataBinding> : AppCompatActivity {
     constructor(@LayoutRes contentLayoutId: Int) : super(contentLayoutId)
 
     //第二种方式初始化databinding
-    private lateinit var mBinding:T
+    private lateinit var mBinding: T
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mBinding=bindView<T>(getLayoutRes()).also{
-            it.lifecycleOwner=viewLifeCycleOwner
+        mBinding = bindView<T>(getLayoutRes()).also {
+            it.lifecycleOwner = viewLifeCycleOwner
         }
         initView()
         initConfig()
@@ -42,24 +43,26 @@ abstract class BaseActivity<T:ViewDataBinding> : AppCompatActivity {
     }
 
 
-
     /**
      * 获取布局文件id
      * @return Int
      */
     abstract fun getLayoutRes(): Int
+
     /**
      * 必要的view初始化
      */
-    open fun initView(){
+    open fun initView() {
         LogUtils.d("${this.javaClass.simpleName} 初始化 initView")
     }
+
     /**
      * view初始化后的必要配置
      */
     open fun initConfig() {
         LogUtils.d("${this.javaClass.simpleName} 初始化 initConfig")
     }
+
     /**
      * view初始化后的必要数据
      */
@@ -69,7 +72,7 @@ abstract class BaseActivity<T:ViewDataBinding> : AppCompatActivity {
 
     override fun onDestroy() {
         super.onDestroy()
-        if (this::mBinding.isInitialized){
+        if (this::mBinding.isInitialized) {
             mBinding.unbind()
         }
     }
