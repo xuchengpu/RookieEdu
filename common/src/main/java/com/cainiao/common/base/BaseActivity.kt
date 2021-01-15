@@ -30,7 +30,7 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity {
     constructor(@LayoutRes contentLayoutId: Int) : super(contentLayoutId)
 
     //第二种方式初始化databinding
-    private lateinit var mBinding: T
+    protected lateinit var mBinding: T
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
