@@ -1,5 +1,6 @@
 package com.cainiao.app
 
+import androidx.core.view.forEachIndexed
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -7,6 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.cainiao.app.databinding.ActivityMainBinding
 import com.cainiao.common.base.BaseActivity
+import com.cainiao.common.widget.BnvMediator
 import com.cainiao.course.CourseFragment
 import com.cainiao.home.HomeFragment
 import com.cainiao.mine.MineFragment
@@ -40,22 +42,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         super.initConfig()
         mBinding.apply {
             vp2.adapter = MainViewPagerAdapter(this@MainActivity, fragments)
-            vp2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-                override fun onPageSelected(position: Int) {
-                    super.onPageSelected(position)
-                    bnvMain.selectedItemId = bnvMain.menu[position].itemId
-                }
-            })
-            bnvMain.setOnNavigationItemSelectedListener { item ->
-                vp2.currentItem = when (item.itemId) {
-                    R.id.homeFragment -> INDEX_HOME
-                    R.id.courseFragment -> INDEX_COURSE
-                    R.id.studyFragment -> INDEX_STUDY
-                    R.id.mineFragment -> INDEX_MINE
-                    else -> error("没有对应${item.title}的ViewPager2的元素")
-                }
-                true
-            }
+
+            BnvMediator(bnvMain,vp2){bnv, vp2 ->
+//                vp2.isUserInputEnabled=false
+            }.attach()
         }
     }
 
