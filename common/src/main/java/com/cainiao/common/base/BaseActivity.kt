@@ -80,7 +80,7 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity {
     /**
      * 扩展liveData的observe函数
      */
-    protected fun <T : Any> LiveData<T>.observeKt(block: (T) -> Unit) {
+    protected inline fun <T : Any> LiveData<T>.observeKt(crossinline block: (T) -> Unit) {
         this.observe(viewLifeCycleOwner, Observer { data ->
             block(data)
         })

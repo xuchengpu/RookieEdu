@@ -26,7 +26,7 @@ abstract class BaseApplication :Application() {
         startKoin {
             androidLogger(level = Level.ERROR)//log level Error方能保证这句话不会报错，要么就不写这个
             androidContext(this@BaseApplication)
-            modules()
+//            modules()
         }
     }
 
