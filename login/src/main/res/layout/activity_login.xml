@@ -118,6 +118,8 @@
             app:layout_constraintBottom_toBottomOf="@id/et_pwd_login"
             app:layout_constraintStart_toStartOf="@id/et_pwd_login"
             app:layout_constraintTop_toTopOf="@id/et_pwd_login" />
+        <!--android:clickable="@{loginVm.obMobile.length()>8&amp;&amp;loginVm.obPassword.length()>8}"
+                   android:enabled="@{loginVm.obMobile.length()>0&amp;&amp;loginVm.obPassword.length()>0}"-->
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_login"
@@ -125,9 +127,7 @@
             android:layout_height="50dp"
             android:layout_margin="20dp"
             android:gravity="center"
-            android:clickable="@{loginVm.obMobile.length()>8&amp;&amp;loginVm.obPassword.length()>8}"
-            android:enabled="@{loginVm.obMobile.length()>0&amp;&amp;loginVm.obPassword.length()>0}"
-            android:onClick="@{()->loginVm.goLogin()}"
+           android:onClick="@{()->loginVm.goLogin()}"
             android:text="登 录"
             android:textColor="@android:color/white"
             android:textSize="16sp"

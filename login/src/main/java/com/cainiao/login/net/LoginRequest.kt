@@ -11,5 +11,4 @@ import androidx.annotation.Keep
 data class LoginRequest(
     val mobi:String,
     val password:String
-) {
-}
+)

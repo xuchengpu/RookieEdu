@@ -14,7 +14,8 @@ import retrofit2.http.Query
  */
 interface LoginService {
     @GET("accounts/phone/is/register")
-    suspend fun isRegister(@Query(value = "mobi") mobile:String): Call<BaseResponse>
-    @POST
-    suspend fun login(@Body requestBody:LoginRequest):Call<BaseResponse>
+    fun isRegister(@Query(value = "mobi") mobile: String): Call<BaseResponse>
+
+    @POST("accounts/course/10301/login")
+    fun login(@Body requestBody: LoginRequest): Call<BaseResponse>
 }

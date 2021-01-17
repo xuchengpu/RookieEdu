@@ -9,7 +9,9 @@ import androidx.lifecycle.viewModelScope
 import com.blankj.utilcode.util.ToastUtils
 import com.cainiao.login.net.LoginRequest
 import com.cainiao.login.repo.ILoginResource
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import kotlin.concurrent.thread
 
 /**
  * Created by 许成谱 on 2021/1/15 14:31.
@@ -28,14 +30,11 @@ class LoginViewModel(private val resourse: ILoginResource) : ViewModel() {
         viewModelScope.launch {
 //            resourse.checkRegister(obMobile.get().toString())
 //            resourse.requestLogin(LoginRequest(obMobile.get().toString(),obPassword.get().toString()))
-            try {
-                resourse.checkRegister("18648957777")
-                resourse.requestLogin(LoginRequest("18648957777", "cn5123456"))
 
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+            resourse.checkRegister("18648957777")
+            resourse.requestLogin(LoginRequest("18648957777", "cn5123456"))
         }
+
     }
 
     fun wechat(ctx: Context) {

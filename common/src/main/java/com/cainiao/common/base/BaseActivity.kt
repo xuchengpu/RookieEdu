@@ -82,6 +82,7 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity {
      */
     protected inline fun <T : Any> LiveData<T>.observeKt(crossinline block: (T) -> Unit) {
         this.observe(viewLifeCycleOwner, Observer { data ->
+            //block.invoke(data)
             block(data)
         })
     }

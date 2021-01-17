@@ -1,6 +1,7 @@
 package com.cainiao.login.net
 
 import androidx.annotation.Keep
+import com.xcp.service.network.UserInfo
 
 /**
  * Created by 许成谱 on 2021/1/15 17:59.
@@ -25,4 +26,4 @@ data class RegisterRsp(
 /**
  * 手机号和密码登录 接口响应
  */
-//typealias LoginRsp = CniaoUserInfo
+typealias LoginRsp = UserInfo

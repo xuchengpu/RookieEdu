@@ -10,7 +10,7 @@ import androidx.annotation.Keep
  */
 @Keep
 data class BaseResponse(
-    val code: Int,//响应码
+    val code: Int?,//响应码
     val data: String?,//响应的数据内容
     val message: String?//响应数据的结果描述
 ) {
