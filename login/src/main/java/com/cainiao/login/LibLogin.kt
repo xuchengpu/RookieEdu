@@ -14,15 +14,18 @@ import org.koin.dsl.module
  * 热爱生活每一天！
  */
 val loginModules = module {
+
     //service retrofit
     single {
         KtRetrofit.initConfig("https://course.api.cniao5.com/")
             .getService(LoginService::class.java)
     }
+
     // respository
     single {
         LoginRepository(get())
     } bind ILoginResource::class
+
     // viewModel
     viewModel { LoginViewModel(get()) }
 }

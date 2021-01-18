@@ -12,6 +12,7 @@ import retrofit2.Callback
 import retrofit2.await
 import retrofit2.awaitResponse
 import java.io.IOException
+import java.lang.RuntimeException
 
 /**
  * 作者： 志威  zhiwei.org
@@ -102,20 +103,19 @@ fun <T : Any> Call<T>.toLiveData(): LiveData<T?> {
     return live
 }
 
-
 /**
  * 扩展retrofit的返回数据，调用await，并catch超时等异常
- * @return DataResult 返回格式为ApiResponse封装
+ * @receiver Call<T>
+ * @return DataResult<T> 返回格式为ApiResponse封装
  */
-suspend fun <T : Any> Call<T>.serverData(): DataResult<T> {
-    var result: DataResult<T> = DataResult.Loading
+suspend fun <T:Any> Call<T>.serverData():DataResult<T>{
+    var result:DataResult<T> = DataResult.Loading
     kotlin.runCatching {
         this.await()
     }.onFailure {
-        result = DataResult.Error(RuntimeException(it))
-        it.printStackTrace()
+        result=DataResult.Error(RuntimeException(it))
     }.onSuccess {
-        result = DataResult.Success(it)
+        result=DataResult.Success(it)
     }
     return result
 }
