@@ -50,5 +50,23 @@ class LoginRepository(private val service: LoginService) : ILoginResource {
 
     override suspend fun requestLogin(body: LoginRequest) {
         service.login(body)
+            .serverData()
+            .onSuccess {
+                onBizzError { code, message ->
+                    LogUtils.w("登录接口 BizError $code,$message")
+                    ToastUtils.showShort(message)
+                }
+                //此处传入的实例类型即为解密后的json串生成的实例
+                onBizzOK<LoginRsp> { code, data, message ->
+                    _loginRsp.value = data
+                    //同步到room数据库，登录状态
+
+                    LogUtils.i("登录接口 BizOK $data")
+                    return@onBizzOK
+                }
+            }.onFailure {
+                LogUtils.e("登录接口 接口异常 ${it.message}")
+                LogUtils.e("登录接口 异常 ${it.message}")
+            }
     }
 }

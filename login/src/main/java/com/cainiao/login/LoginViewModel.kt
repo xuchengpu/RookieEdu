@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.blankj.utilcode.util.ToastUtils
+import com.cainiao.common.base.BaseViewModel
 import com.cainiao.login.net.LoginRequest
 import com.cainiao.login.repo.ILoginResource
 import kotlinx.coroutines.async
@@ -18,23 +19,37 @@ import kotlin.concurrent.thread
  * qq:1550540124
  * 热爱生活每一天！
  */
-class LoginViewModel(private val resourse: ILoginResource) : ViewModel() {
+class LoginViewModel(private val resourse: ILoginResource) : BaseViewModel() {
     val obMobile = ObservableField<String>()
     val obPassword = ObservableField<String>()
+
+    val registerRsp = resourse.registerRsp
+    val loginRsp = resourse.loginRsp
 
     /**
      * 调用登录，两步，1，判断手机号是否已经注册
      * 2，已经注册的，才去调用登录
      */
     fun goLogin() {
-        viewModelScope.launch {
-//            resourse.checkRegister(obMobile.get().toString())
-//            resourse.requestLogin(LoginRequest(obMobile.get().toString(),obPassword.get().toString()))
+        val account = obMobile.get() ?: return
+        checkRegister(account)
+    }
 
-            resourse.checkRegister("18648957777")
-            resourse.requestLogin(LoginRequest("18648957777", "cn5123456"))
+    /**
+     * 调用登录
+     * val mobi: String = "18648957777",
+     * val password: String = "cn5123456"
+     */
+    internal fun relogin() {
+        val account = obMobile.get() ?: return
+        val password = obPassword.get() ?: return
+        serverAwait {
+            resourse.requestLogin(LoginRequest(account, password))
         }
+    }
 
+    private fun checkRegister(account: String) = serverAwait {
+        resourse.checkRegister(account)
     }
 
     fun wechat(ctx: Context) {
