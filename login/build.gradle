@@ -18,7 +18,4 @@ android {
 dependencies {
     //from dependencies.gradle
     implementation project(path: ':service')
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.2.0'
 }
