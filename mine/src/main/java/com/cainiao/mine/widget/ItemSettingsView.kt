@@ -172,7 +172,7 @@ class ItemSettingsView @JvmOverloads constructor(//JvmOverloads会重载每个�
     @Keep
     data class ItemSettingsBean(
         var iconRes: Any = R.drawable.ic_gift_card,
-        var title: String = "000000",
+        var title: String = "",
         var desc: String = "",
         var titleColor: Int = R.color.colorPrimaryText,
         var descColor: Int = R.color.colorSecondaryText,
