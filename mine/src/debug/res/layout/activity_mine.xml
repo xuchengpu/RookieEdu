@@ -3,6 +3,9 @@
 
     <data>
 
+        <variable
+            name="bean"
+            type="androidx.databinding.ObservableField&lt;com.cainiao.mine.widget.ItemSettingsView.ItemSettingsBean>" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -14,9 +17,13 @@
         tools:context=".MineActivity">
 
         <com.cainiao.mine.widget.ItemSettingsView
+            android:id="@+id/view_setting"
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
-
+            android:layout_height="50dp"
+            app:arrowColor="@{bean.arrowColor}"
+            app:icon="@{bean.iconRes}"
+            app:title="@{bean.title}"
+            app:titleColor="@{bean.titleColor}" />
 
     </LinearLayout>
 </layout>

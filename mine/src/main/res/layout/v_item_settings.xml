@@ -2,7 +2,6 @@
 <layout>
 
     <data>
-
         <variable
             name="info"
             type="androidx.databinding.ObservableField&lt;com.cainiao.mine.widget.ItemSettingsView.ItemSettingsBean>" />
@@ -79,7 +78,5 @@
             app:srcCompat="@{info.arrowRes}"
             app:tint="@{info.arrowColor}"
             tools:srcCompat="@drawable/ic_right" />
-
-
     </merge>
 </layout>

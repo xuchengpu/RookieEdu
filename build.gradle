@@ -5,7 +5,7 @@ apply plugin: 'com.didi.dokit'
 
 buildscript {
     ext {
-        kotlin_version = '1.3.71'
+        kotlin_version = '1.4.10'
         compile_sdk_version = 29
         build_tools_version = '29.0.3'
         min_sdk_verion = 21
