@@ -45,7 +45,7 @@ interface UserDao {
 
     //= in like
     @Query("select * from tb_user where id =:id")
-    fun queryUser(id: Int = 0): UserInfo
+    fun queryUser(id: Int = 0): UserInfo?
 
     @Query("select * from tb_user where id =:id")
     fun queryLiveData(id: Int = 0): LiveData<UserInfo>
