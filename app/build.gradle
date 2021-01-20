@@ -19,7 +19,4 @@ dependencies {
         implementation project(path: ':home')
     }
     implementation project(path: ':service')
-    //今日头条的适配方案
-    implementation 'me.jessyan:autosize:1.2.1'
-
 }
