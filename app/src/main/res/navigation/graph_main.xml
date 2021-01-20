@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_study" />
     <fragment
         android:id="@+id/mineFragment"
-        android:name="com.cainiao.mine.MineFragment"
+        android:name="com.cainiao.mine.ui.MineFragment"
         android:label="@string/str_mine"
         tools:layout="@layout/fragment_mine" />
 

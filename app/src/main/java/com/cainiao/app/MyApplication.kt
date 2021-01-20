@@ -1,10 +1,13 @@
 package com.cainiao.app
 
-import android.app.Application
 import com.alibaba.android.arouter.launcher.ARouter
 import com.cainiao.common.BaseApplication
 import com.cainiao.common.ktx.application
+import com.cainiao.login.loginModules
+import com.cainiao.mine.mineModules
 import com.xcp.service.assistant.AssistantApp
+import com.xcp.service.serviceModules
+import org.koin.core.context.loadKoinModules
 
 /**
  * Created by 许成谱 on 2021/1/12 15:58.
@@ -12,6 +15,7 @@ import com.xcp.service.assistant.AssistantApp
  * 热爱生活每一天！
  */
 class MyApplication:BaseApplication() {
+    private val modules = listOf(loginModules,serviceModules,mineModules)
 
     override fun initConfig() {
         super.initConfig()
@@ -21,5 +25,7 @@ class MyApplication:BaseApplication() {
         }
         ARouter.init(this); // As early as possible, it is recommended to initialize in the Application
         AssistantApp.initConfig(application)
+
+        loadKoinModules(modules)
     }
 }

@@ -1,17 +1,14 @@
 package com.cainiao.app
 
-import androidx.core.view.forEachIndexed
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2
 import com.cainiao.app.databinding.ActivityMainBinding
 import com.cainiao.common.base.BaseActivity
 import com.cainiao.common.widget.BnvMediator
 import com.cainiao.course.CourseFragment
 import com.cainiao.home.HomeFragment
-import com.cainiao.mine.MineFragment
+import com.cainiao.mine.ui.MineFragment
 import com.cainiao.study.StudyFragment
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {

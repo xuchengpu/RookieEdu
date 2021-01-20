@@ -7,7 +7,7 @@ import org.koin.dsl.module
  * qq:1550540124
  * 热爱生活每一天！
  */
-val moduleService= module {
+val serviceModules= module {
 
 
 }

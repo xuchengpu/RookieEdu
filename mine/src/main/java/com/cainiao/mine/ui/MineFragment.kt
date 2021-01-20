@@ -1,9 +1,10 @@
-package com.cainiao.mine
+package com.cainiao.mine.ui
 
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import com.cainiao.common.base.BaseFragment
+import com.cainiao.mine.R
 import com.cainiao.mine.databinding.FragmentMineBinding
 
 /**

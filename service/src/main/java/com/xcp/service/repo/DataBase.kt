@@ -11,21 +11,32 @@ import androidx.room.PrimaryKey
  * qq:1550540124
  * 热爱生活每一天！
  */
-//1、entity的定义
 
-@Entity(tableName = "tb_cniao_user")
+
+
+
+
+
+
+
+
+
+
+
+
+//1、entity的定义
+@Keep
+@Entity(tableName = "tb_user")
 data class UserInfo(
     @PrimaryKey
-    val id: Int,//主键
+    val id:Int,
     val course_permission: Boolean,
     val token: String?,
-    @Embedded
     val user: User?
 ) {
     @Keep
     data class User(
-        @ColumnInfo(name = "cniao_user_id")
-        val id: Int,//用户id
+        val id:Int,
         val logo_url: String?,//用户头像
         val reg_time: String?,//用户注册时间
         val username: String?//用户名
