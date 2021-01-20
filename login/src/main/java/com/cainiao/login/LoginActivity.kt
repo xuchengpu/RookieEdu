@@ -1,9 +1,11 @@
 package com.cainiao.login
 
+import androidx.viewpager.widget.ViewPager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ToastUtils
 import com.cainiao.common.base.BaseActivity
 import com.cainiao.common.ktx.context
+import com.cainiao.common.ktx.dismissKeyBoard
 import com.cainiao.login.databinding.ActivityLoginBinding
 import com.cainiao.login.net.RegisterRsp
 import com.xcp.service.repo.DbHelper
@@ -28,6 +30,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                 it?.also {
                     DbHelper.insertUserInfo(context, it)
                 }
+                dismissKeyBoard(mBinding.root)
                 //finish自己
                 finish()
             }

@@ -2,6 +2,7 @@ package com.cainiao.common
 
 import android.app.Application
 import android.content.Context
+import com.blankj.utilcode.util.LogUtils
 import me.jessyan.autosize.AutoSize
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
