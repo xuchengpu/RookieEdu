@@ -1,7 +1,7 @@
 package com.cainiao.login.net
 
 import androidx.annotation.Keep
-import com.xcp.service.network.UserInfo
+import com.xcp.service.repo.UserInfo
 
 /**
  * Created by 许成谱 on 2021/1/15 17:59.

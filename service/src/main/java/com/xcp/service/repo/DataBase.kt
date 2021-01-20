@@ -1,44 +1,77 @@
-package com.xcp.service.network
+package com.xcp.service.repo
 
+import android.content.Context
 import androidx.annotation.Keep
-import androidx.room.ColumnInfo
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.lifecycle.LiveData
+import androidx.room.*
 
 /**
  * Created by 许成谱 on 2021/1/17 0017 21:57.
  * qq:1550540124
  * 热爱生活每一天！
  */
-
-
-
-
-
-
-
-
-
-
-
-
-
 //1、entity的定义
 @Keep
 @Entity(tableName = "tb_user")
 data class UserInfo(
     @PrimaryKey
-    val id:Int,
+    val id: Int,//主键
     val course_permission: Boolean,
     val token: String?,
+    @Embedded//内嵌的数据表,User的字段将会被添加到表tb_user中
     val user: User?
 ) {
     @Keep
     data class User(
-        val id:Int,
+        @ColumnInfo(name = "user_id")
+        val id: Int,//用户id
         val logo_url: String?,//用户头像
         val reg_time: String?,//用户注册时间
         val username: String?//用户名
     )
 }
+
+//2、定义dao
+@Dao
+interface UserDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertUser(user: UserInfo)
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    fun updateUser(user: UserInfo)
+
+    @Delete
+    fun deleteUser(user: UserInfo)
+
+    //= in like
+    @Query("select * from tb_user where id =:id")
+    fun queryUser(id: Int = 0): UserInfo
+
+    @Query("select * from tb_user where id =:id")
+    fun queryLiveData(id: Int = 0): LiveData<UserInfo>
+
+}
+
+//3、定义数据库
+@Database(entities = [UserInfo::class], version = 1, exportSchema = true)
+abstract class DataBase : RoomDatabase() {
+    abstract fun userDao():UserDao
+    //单例
+    companion object {
+        private const val DB_NAME = "rookie_edu_database"
+
+        @Volatile
+        private var instance: DataBase? = null
+
+        @Synchronized
+        fun getInstance(context: Context): DataBase {
+            return instance ?: Room.databaseBuilder(
+                context,
+                DataBase::class.java,
+                DB_NAME
+            ).build().also { instance = it }
+        }
+    }
+
+}
+
