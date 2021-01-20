@@ -1,9 +1,11 @@
 package com.xcp.service.repo
 
+import android.app.Application
 import android.content.Context
 import androidx.annotation.Keep
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.cainiao.common.BaseApplication
 
 /**
  * Created by 许成谱 on 2021/1/17 0017 21:57.

@@ -5,6 +5,7 @@ import com.cainiao.login.net.LoginService
 import com.cainiao.login.repo.ILoginResource
 import com.cainiao.login.repo.LoginRepository
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.context.GlobalContext.get
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
@@ -20,7 +21,6 @@ val loginModules = module {
         KtRetrofit.initConfig("https://course.api.cniao5.com/")
             .getService(LoginService::class.java)
     }
-
     // respository
     single {
         LoginRepository(get())

@@ -1,6 +1,11 @@
 package com.xcp.service.repo
 
+import android.app.Application
 import android.content.Context
+import android.provider.Settings
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 /**
  * Created by 许成谱 on 2021/1/20 13:25.
@@ -8,7 +13,6 @@ import android.content.Context
  * 热爱生活每一天！
  */
 object DbHelper {
-
     /**
      * 以普通数据对象的形式，获取userInfo
      */
@@ -24,8 +28,20 @@ object DbHelper {
      * 删除数据表中的userInfo信息
      */
     fun deleteUserInfo(context: Context) {
-        val userInfo = getUserInfo(context) ?: return
-        DataBase.getInstance(context).userDao().deleteUser(userInfo)
+        GlobalScope.launch(Dispatchers.IO) {
+            getUserInfo(context)?.apply {
+                DataBase.getInstance(context).userDao().deleteUser(this)
+            }
+        }
+    }
+
+    /**
+     * 新增用户数据到数据表
+     */
+    fun insertUserInfo(context: Context, user: UserInfo) {
+        GlobalScope.launch(Dispatchers.IO) {
+            DataBase.getInstance(context).userDao().insertUser(user)
+        }
     }
 
 }

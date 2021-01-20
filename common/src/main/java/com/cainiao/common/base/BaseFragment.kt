@@ -72,9 +72,9 @@ abstract class BaseFragment : Fragment {
     /**
      * 扩展liveData的observe函数
      */
-    protected fun <T : Any> LiveData<T>.observeKt(block: (T) -> Unit) {
+    protected fun <T : Any?> LiveData<T>.observeKt(block: (T?) -> Unit) {
         this.observe(viewLifecycleOwner, Observer { data ->
-            block.invoke(data)//另外一种写法
+            block(data)//另外一种写法
         })
     }
 

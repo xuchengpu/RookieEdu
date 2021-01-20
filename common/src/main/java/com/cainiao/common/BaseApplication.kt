@@ -1,11 +1,13 @@
 package com.cainiao.common
 
 import android.app.Application
+import android.content.Context
 import com.didichuxing.doraemonkit.DoraemonKit
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
+import org.koin.dsl.koinApplication
 
 /**
  * Created by 许成谱 on 2021/1/12 0012 22:47.
@@ -13,8 +15,12 @@ import org.koin.core.logger.Level
  * 热爱生活每一天！
  */
 abstract class BaseApplication :Application() {
+    companion object{
+        lateinit var context: Context
+    }
     override fun onCreate() {
         super.onCreate()
+        context=applicationContext
         initConfig()
         initData()
     }

@@ -63,8 +63,7 @@ class LoginViewModel(private val resourse: ILoginResource) : BaseViewModel() {
     fun weibo() {
         ToastUtils.showShort("点击了微博登录")
     }
-
-    fun AA(view: View) {
-        ToastUtils.showShort("静态点击方式")
+    fun forget(v:View) {
+        ToastUtils.showShort("忘记密码")
     }
 }

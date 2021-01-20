@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
+import com.cainiao.common.model.SingleLiveData
 import com.cainiao.login.net.LoginRequest
 import com.cainiao.login.net.LoginRsp
 import com.cainiao.login.net.LoginService
@@ -20,8 +21,8 @@ import com.xcp.service.network.onSuccess
  * 热爱生活每一天！
  */
 class LoginRepository(private val service: LoginService) : ILoginResource {
-    private val _registerRsp = MutableLiveData<RegisterRsp>()
-    private val _loginRsp = MutableLiveData<LoginRsp>()
+    private val _registerRsp = SingleLiveData<RegisterRsp>()
+    private val _loginRsp = SingleLiveData<LoginRsp>()
 
     override val registerRsp: LiveData<RegisterRsp>
         get() = _registerRsp
