@@ -178,4 +178,6 @@ dependencies {
     debugImplementation 'com.didichuxing.doraemonkit:dokitx:3.3.5'
     releaseImplementation 'com.didichuxing.doraemonkit:dokitx-no-op:3.3.5'
     //endregion
+    //今日头条的适配方案
+    implementation 'me.jessyan:autosize:1.2.1'
 }
