@@ -2,6 +2,7 @@ package com.cainiao.mine.ui
 
 import androidx.lifecycle.MutableLiveData
 import com.cainiao.common.base.BaseViewModel
+import com.cainiao.mine.repo.IMineResource
 import com.xcp.service.repo.UserInfo
 
 /**
@@ -9,7 +10,11 @@ import com.xcp.service.repo.UserInfo
  * qq:1550540124
  * 热爱生活每一天！
  */
-class MineViewModel : BaseViewModel() {
-    val userInfo=MutableLiveData<UserInfo>()
+class MineViewModel(val reposity: IMineResource) : BaseViewModel() {
 
+    val userInfo = reposity._userInfoRegister
+
+    fun getUserInfo(token: String?) = serverAwait {
+        reposity.getUserInfo(token)
+    }
 }

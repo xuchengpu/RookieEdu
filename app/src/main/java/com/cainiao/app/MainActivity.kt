@@ -8,7 +8,7 @@ import com.cainiao.common.base.BaseActivity
 import com.cainiao.common.widget.BnvMediator
 import com.cainiao.course.CourseFragment
 import com.cainiao.home.HomeFragment
-import com.cainiao.mine.ui.MineFragment
+import com.cainiao.mine.MineContainerFragment
 import com.cainiao.study.StudyFragment
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
@@ -23,7 +23,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         INDEX_HOME to { HomeFragment() },//INDEX_HOME to HomeFragment() ：这种方式会复用HomeFragment，ReFragment这种方式不会复用
         INDEX_COURSE to { CourseFragment() },
         INDEX_STUDY to { StudyFragment() },
-        INDEX_MINE to { MineFragment() })
+        INDEX_MINE to { MineContainerFragment() })
 
     override fun getLayoutRes(): Int {
         return R.layout.activity_main

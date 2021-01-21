@@ -30,14 +30,14 @@
             app:layout_constraintStart_toStartOf="@id/v_bg_header_mine"
             app:layout_constraintTop_toTopOf="@id/v_bg_header_mine"
             app:shapeAppearanceOverlay="@style/circleImageStyle"
-            app:srcCompat="@{vm.userInfo.user.logo_url,default= @drawable/icon_default_header}" />
+            app:srcCompat="@{vm.userInfo.logo_url,default= @drawable/icon_default_header}" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_user_name_mine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:text="@{vm.userInfo.user.username??`Null`}"
+            android:text="@{vm.userInfo.username??`Null`}"
             android:textColor="@color/colorBlack"
             android:textSize="18sp"
             android:textStyle="bold"
