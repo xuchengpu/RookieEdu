@@ -22,8 +22,8 @@ class MineFragment : BaseFragment() {
         return FragmentMineBinding.bind(view).apply {
             vm = viewModel
             btnLogoutMine.setOnClickListener {
-//                DbHelper.deleteUserInfo(requireContext())
-                ARouter.getInstance().build("/login/login").navigation()
+                DbHelper.deleteUserInfo(requireContext())
+//                ARouter.getInstance().build("/login/login").navigation()
             }
         }
     }
