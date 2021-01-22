@@ -34,10 +34,12 @@ class MineResource(val service: MineService) : IMineResource {
                     LogUtils.w("获取用户信息 onBizzOK $data")
                 }
                 onBizzError { code, message ->
+                    userInfoRegister.value = null
                     LogUtils.w("获取用户信息 BizError $code,$message")
                 }
             }
             .onFailure {
+                userInfoRegister.value = null
                 LogUtils.e("获取用户信息 接口异常 ${it.message}")
             }
 

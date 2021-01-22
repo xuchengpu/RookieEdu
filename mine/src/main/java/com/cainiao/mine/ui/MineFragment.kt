@@ -26,8 +26,8 @@ class MineFragment : BaseFragment() {
         return FragmentMineBinding.bind(view).apply {
             vm = viewModel
             btnLogoutMine.setOnClickListener {
+                CniaoSpUtils.remove(SP_KEY_USER_TOKEN)
                 DbHelper.deleteUserInfo(requireContext())
-//                CniaoSpUtils.remove(SP_KEY_USER_TOKEN)
                 ARouter.getInstance().build("/login/login").navigation()
             }
             tvUserNameMine.setOnClickListener {
