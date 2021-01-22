@@ -1,5 +1,6 @@
 package com.xcp.service
 
+import com.cainiao.common.network.KtRetrofit
 import org.koin.dsl.module
 
 /**
@@ -7,7 +8,8 @@ import org.koin.dsl.module
  * qq:1550540124
  * 热爱生活每一天！
  */
-val serviceModules= module {
-
+val serviceModules = module {
+    //自定义参数类型
+    single { (host: String) -> KtRetrofit.initConfig(host) }
 
 }

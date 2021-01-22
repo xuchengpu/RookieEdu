@@ -16,7 +16,7 @@ import com.xcp.service.R
  */
 @BindingAdapter("app:srcCompat", requireAll = false)
 fun imgSrcCompat(iv: ImageView, src: Any?) {
-    val image = src ?: R.drawable.icon_account
+    val image = src ?: R.drawable.icon_default_header
 
     Glide.with(iv)
         .load(image)

@@ -4,9 +4,9 @@ import com.cainiao.common.network.KtRetrofit
 import com.cainiao.login.net.LoginService
 import com.cainiao.login.repo.ILoginResource
 import com.cainiao.login.repo.LoginRepository
-import com.xcp.service.network.Config.Companion.baseUrl
+import com.cniao5.common.utils.getBaseHost
 import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.core.context.GlobalContext.get
+import org.koin.core.parameter.parametersOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
@@ -19,8 +19,7 @@ val loginModules = module {
 
     //service retrofit
     single {
-        KtRetrofit.initConfig(baseUrl)
-            .getService(LoginService::class.java)
+        get<KtRetrofit> { parametersOf(getBaseHost()) }.getService(LoginService::class.java)
     }
     // respository
     single {

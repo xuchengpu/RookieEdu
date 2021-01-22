@@ -9,6 +9,8 @@ import com.cainiao.common.base.BaseFragment
 import com.cainiao.mine.R
 import com.cainiao.mine.databinding.FragmentMineBinding
 import com.cainiao.mine.net.UserInfoRsp
+import com.cniao5.common.network.config.SP_KEY_USER_TOKEN
+import com.cniao5.common.utils.CniaoSpUtils
 import com.xcp.service.repo.DbHelper
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -25,15 +27,24 @@ class MineFragment : BaseFragment() {
             vm = viewModel
             btnLogoutMine.setOnClickListener {
                 DbHelper.deleteUserInfo(requireContext())
+//                CniaoSpUtils.remove(SP_KEY_USER_TOKEN)
                 ARouter.getInstance().build("/login/login").navigation()
             }
+            tvUserNameMine.setOnClickListener {
+                val info = viewModel.userInfo.value
+                if (info == null) {
+                    ARouter.getInstance().build("/login/login").navigation()
+                }
+            }
             ivUserIconMine.setOnClickListener {
-                viewModel.userInfo.value?.let {
+                val info = viewModel.userInfo.value
+                if (info == null) {
+                    ARouter.getInstance().build("/login/login").navigation()
+                } else {
                     val action =
-                        MineFragmentDirections.actionMineFragmentToUserInfoFragment(it)
+                        MineFragmentDirections.actionMineFragmentToUserInfoFragment(info)
                     findNavController().navigate(action)
                 }
-
             }
         }
     }

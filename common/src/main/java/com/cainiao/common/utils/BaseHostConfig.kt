@@ -1,6 +1,8 @@
 package com.cniao5.common.utils
 
 import com.cainiao.common.BuildConfig
+import com.cniao5.common.utils.Config.Companion.BASE_URL
+import com.cniao5.common.utils.Config.Companion.HOST
 
 
 /**
@@ -18,30 +20,36 @@ import com.cainiao.common.BuildConfig
  * ----------------------------------------------------------------
  * 基础baseUrl的配置，可用于dokit的serverHost
  */
+class Config {
+    companion object {
+        //配置host的key
+        const val HOST = "host"
+
+        //正式域名
+        const val BASE_URL = "https://course.api.cniao5.com/"
+
+        //测试域名
+        const val TEST_BASE_URL = "https://course.api.cniao5.com.test/"
+    }
+}
 
 /**
  * 获取当前配置的baseHost
  */
 fun getBaseHost(): String {
+    //从sp中获取
     return if (BuildConfig.DEBUG) {
-        CniaoSpUtils.getString(SP_KEY_BASE_HOST) ?: HOST_PRODUCT
+        CniaoSpUtils.getString(HOST) ?: BASE_URL
     } else {
-        HOST_PRODUCT
+        BASE_URL
     }
+
 }
 
 /**
  * 更新配置host
  */
 fun setBaseHost(host: String) {
-    CniaoSpUtils.put(SP_KEY_BASE_HOST, host)
+    //设置到sp中
+    CniaoSpUtils.put(Config.HOST, host)
 }
-
-
-//配置host的key
-private const val SP_KEY_BASE_HOST = "sp_key_base_host"
-
-//不同的baseHost，这里演示，所以都写一样的了，
-const val HOST_DEV = "https://course.api.cniao5.com/"//开发环境下的host配置
-const val HOST_QA = "https://course.api.cniao5.com/"//qa环境的host配置
-const val HOST_PRODUCT = "https://course.api.cniao5.com/"//正式配置host

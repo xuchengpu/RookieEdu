@@ -6,8 +6,9 @@ import com.cainiao.mine.net.MineService
 import com.cainiao.mine.repo.IMineResource
 import com.cainiao.mine.repo.MineResource
 import com.cainiao.mine.ui.MineViewModel
-import com.xcp.service.network.Config
+import com.cniao5.common.utils.getBaseHost
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.parameter.parametersOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
@@ -18,9 +19,10 @@ import org.koin.dsl.module
  */
 val mineModules = module {
     single {
-        KtRetrofit
-            .initConfig(Config.baseUrl)
-            .getService(MineService::class.java)
+        /* KtRetrofit
+             .initConfig(getBaseHost())
+             .getService(MineService::class.java)*/
+        get<KtRetrofit> { parametersOf(getBaseHost()) }.getService(MineService::class.java)
     }
     single { MineResource(get()) } bind IMineResource::class
 

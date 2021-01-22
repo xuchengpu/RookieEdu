@@ -8,6 +8,8 @@ import com.cainiao.common.ktx.context
 import com.cainiao.common.ktx.dismissKeyBoard
 import com.cainiao.login.databinding.ActivityLoginBinding
 import com.cainiao.login.net.RegisterRsp
+import com.cniao5.common.network.config.SP_KEY_USER_TOKEN
+import com.cniao5.common.utils.CniaoSpUtils
 import com.xcp.service.repo.DbHelper
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -29,6 +31,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                 //存储到数据库
                 it?.also {
                     DbHelper.insertUserInfo(context, it)
+                    //存储token
+                    CniaoSpUtils.put(SP_KEY_USER_TOKEN, it.token)
                 }
                 dismissKeyBoard(mBinding.root)
                 //finish自己
