@@ -5,6 +5,7 @@ import com.cainiao.common.BaseApplication
 import com.cainiao.common.ktx.application
 import com.cainiao.login.loginModules
 import com.cainiao.mine.mineModules
+import com.cainiao.study.studyModules
 import com.xcp.service.assistant.AssistantApp
 import com.xcp.service.serviceModules
 import org.koin.core.context.loadKoinModules
@@ -14,8 +15,8 @@ import org.koin.core.context.loadKoinModules
  * qq:1550540124
  * 热爱生活每一天！
  */
-class MyApplication:BaseApplication() {
-    private val modules = listOf(loginModules,serviceModules,mineModules)
+class MyApplication : BaseApplication() {
+    private val modules = listOf(loginModules, studyModules, serviceModules, mineModules)
 
     override fun initConfig() {
         super.initConfig()

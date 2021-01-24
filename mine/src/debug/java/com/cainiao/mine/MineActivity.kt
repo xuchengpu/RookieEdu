@@ -1,21 +1,29 @@
 package com.cainiao.mine
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.ObservableField
+import androidx.lifecycle.ViewModelProviders
+import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.cainiao.common.base.BaseActivity
 import com.cainiao.mine.databinding.ActivityMineBinding
+import com.cainiao.mine.ui.MineViewModel
 import com.cainiao.mine.widget.ItemSettingsView
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MineActivity : BaseActivity<ActivityMineBinding>() {
+
+//    private val viewModel: MineViewModel by viewModel()
 
     override fun getLayoutRes() = R.layout.activity_mine
 
     override fun initConfig() {
         super.initConfig()
+//        LogUtils.e("MineActivity-->" + viewModel)
         mBinding.apply {
             viewSetting.setTitle("我的订单")
             val ib =
@@ -35,6 +43,8 @@ class MineActivity : BaseActivity<ActivityMineBinding>() {
             }
             viewSetting.setOnClickListener {
                 ToastUtils.showShort("点击整个Item")
+//                val intent = Intent(this@MineActivity, MineActivity::class.java)
+//                startActivity(intent)
             }
 
 

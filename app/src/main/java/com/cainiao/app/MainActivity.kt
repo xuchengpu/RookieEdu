@@ -9,7 +9,7 @@ import com.cainiao.common.widget.BnvMediator
 import com.cainiao.course.CourseFragment
 import com.cainiao.home.HomeFragment
 import com.cainiao.mine.MineContainerFragment
-import com.cainiao.study.StudyFragment
+import com.cainiao.study.ui.StudyFragment
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     companion object {
