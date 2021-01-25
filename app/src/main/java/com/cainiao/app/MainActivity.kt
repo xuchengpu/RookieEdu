@@ -40,7 +40,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             vp2.adapter = MainViewPagerAdapter(this@MainActivity, fragments)
 
             BnvMediator(bnvMain, vp2) { bnv, vp2 ->
-//                vp2.isUserInputEnabled=false
+                vp2.isUserInputEnabled=false
             }.attach()
         }
     }

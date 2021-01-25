@@ -47,10 +47,12 @@ class StudyResource(private val service: StudyService) : IStudyResource {
                     LogUtils.i("获取学习信息 BizOK $data")
                 }
                 onBizzError { code, message ->
+                    _studyInfo.value = null
                     LogUtils.w("获取学习信息 BizError $code,$message")
                 }
             }
             .onFailure {
+                _studyInfo.value = null
                 LogUtils.e("获取学习信息 接口异常 ${it.message}")
             }
     }
@@ -91,6 +93,7 @@ class StudyResource(private val service: StudyService) : IStudyResource {
             .onSuccess {
                 //只要不是接口响应成功，
                 onBizzError { code, message ->
+                    _boughtList.value = null
                     LogUtils.w("获取购买的课程 BizError $code,$message")
                 }
                 onBizzOK<BoughtRsp> { code, data, message ->
@@ -99,6 +102,7 @@ class StudyResource(private val service: StudyService) : IStudyResource {
                     return@onBizzOK
                 }
             }.onFailure {
+                _boughtList.value = null
                 LogUtils.e("获取购买的课程 接口异常 ${it.message}")
             }
 
