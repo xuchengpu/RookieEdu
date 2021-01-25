@@ -39,11 +39,7 @@ abstract class BaseFragment : Fragment {
         return inflater.inflate(getLayoutRes(),container,false)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        
-      Log.e("tag","${this.javaClass.simpleName}  onCreate")
-    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -51,43 +47,48 @@ abstract class BaseFragment : Fragment {
         mBinding?.lifecycleOwner=viewLifecycleOwner
         initConfig()
         initData()
-      Log.e("tag","${this.javaClass.simpleName}  onViewCreated")
+      Log.e("tag","${this}  onViewCreated")
+    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        Log.e("tag","${this}  onCreate")
     }
 
     override fun onStart() {
         super.onStart()
-      Log.e("tag","${this.javaClass.simpleName}  onStart")
+      Log.e("tag","${this}  onStart")
     }
     override fun onPause() {
         super.onPause()
-      Log.e("tag","${this.javaClass.simpleName}  onPause")
+      Log.e("tag","${this}  onPause")
     }
     override fun onResume() {
         super.onResume()
-      Log.e("tag","${this.javaClass.simpleName}  onResume")
+      Log.e("tag","${this}  onResume")
     }
 
     override fun onStop() {
         super.onStop()
-      Log.e("tag","${this.javaClass.simpleName}  onStop")
+      Log.e("tag","${this}  onStop")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-      Log.e("tag","${this.javaClass.simpleName}  onDestroyView")
+      Log.e("tag","${this}  onDestroyView")
     }
 
     /**
      * view初始化后的必要配置
      */
     open fun initConfig() {
-//      Log.e("tag","${this.javaClass.simpleName} 初始化 initConfig")
+//      Log.e("tag","${this} 初始化 initConfig")
     }
     /**
      * view初始化后的必要数据
      */
     open fun initData() {
-//      Log.e("tag","${this.javaClass.simpleName} 初始化 initData")
+//      Log.e("tag","${this} 初始化 initData")
     }
     abstract fun bindView(view:View,savedInstanceState: Bundle?):ViewDataBinding?
 
@@ -96,7 +97,7 @@ abstract class BaseFragment : Fragment {
 
 
     override fun onDestroy() {
-      Log.e("tag","${this.javaClass.simpleName}  onDestroy")
+      Log.e("tag","${this}  onDestroy")
         super.onDestroy()
         mBinding?.unbind()
     }
