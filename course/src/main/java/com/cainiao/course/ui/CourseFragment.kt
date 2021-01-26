@@ -1,9 +1,10 @@
-package com.cainiao.course
+package com.cainiao.course.ui
 
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import com.cainiao.common.base.BaseFragment
+import com.cainiao.course.R
 import com.cainiao.course.databinding.FragmentCourseBinding
 
 /**

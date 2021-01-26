@@ -6,7 +6,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.cainiao.app.databinding.ActivityMainBinding
 import com.cainiao.common.base.BaseActivity
 import com.cainiao.common.widget.BnvMediator
-import com.cainiao.course.CourseFragment
+import com.cainiao.course.ui.CourseFragment
 import com.cainiao.home.HomeFragment
 import com.cainiao.mine.MineContainerFragment
 import com.cainiao.study.ui.StudyFragment
