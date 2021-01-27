@@ -47,35 +47,35 @@ abstract class BaseFragment : Fragment {
         mBinding?.lifecycleOwner=viewLifecycleOwner
         initConfig()
         initData()
-      Log.e("tag","${this}  onViewCreated")
+//      Log.e("tag","${this}  onViewCreated")
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Log.e("tag","${this}  onCreate")
+//        Log.e("tag","${this}  onCreate")
     }
 
     override fun onStart() {
         super.onStart()
-      Log.e("tag","${this}  onStart")
+//      Log.e("tag","${this}  onStart")
     }
     override fun onPause() {
         super.onPause()
-      Log.e("tag","${this}  onPause")
+//      Log.e("tag","${this}  onPause")
     }
     override fun onResume() {
         super.onResume()
-      Log.e("tag","${this}  onResume")
+//      Log.e("tag","${this}  onResume")
     }
 
     override fun onStop() {
         super.onStop()
-      Log.e("tag","${this}  onStop")
+//      Log.e("tag","${this}  onStop")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-      Log.e("tag","${this}  onDestroyView")
+//      Log.e("tag","${this}  onDestroyView")
     }
 
     /**
@@ -97,7 +97,7 @@ abstract class BaseFragment : Fragment {
 
 
     override fun onDestroy() {
-      Log.e("tag","${this}  onDestroy")
+//      Log.e("tag","${this}  onDestroy")
         super.onDestroy()
         mBinding?.unbind()
     }

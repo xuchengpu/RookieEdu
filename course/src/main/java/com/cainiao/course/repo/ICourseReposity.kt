@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.Flow
  * 热爱生活每一天！
  */
 interface ICourseReposity {
-    val liveCourseType:LiveData<CourseTypes>
+    val liveCourseType:LiveData<CourseTypes?>
 
     suspend fun getCourseCategory()
 

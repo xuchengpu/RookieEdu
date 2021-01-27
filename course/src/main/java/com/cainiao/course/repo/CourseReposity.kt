@@ -23,13 +23,29 @@ import kotlinx.coroutines.flow.Flow
  * 热爱生活每一天！
  */
 class CourseReposity(val service: CourseService) : ICourseReposity {
-    private val _liveCourseType = MutableLiveData<CourseTypes>()
+    private val _liveCourseType = MutableLiveData<CourseTypes?>()
 
-    override val liveCourseType: LiveData<CourseTypes>
+    override val liveCourseType: LiveData<CourseTypes?>
         get() = _liveCourseType
 
     override suspend fun getCourseCategory() {
+        service.getCourseCategory()
+            .serverData()
+            .onSuccess {
+                onBizzOK<CourseTypes> { code, data, message ->
 
+                    LogUtils.i("获取课程分类 BizOK $data")
+                    _liveCourseType.value = data
+
+                }
+                onBizzError { code, message ->
+                    _liveCourseType.value = null
+                    LogUtils.w("获取课程分类 BizError $code,$message")
+                }
+            }
+            .onFailure {
+                LogUtils.e("获取课程分类 接口异常 ${it.message}")
+            }
 
     }
 

@@ -39,7 +39,7 @@ data class CourseList(
     data class Data(
         val brief: String?,
         val comment_count: Int,
-        val cost_price: Int,
+        val cost_price: Double,
         val expiry_day: Int,
         val finished_lessons_count: Int,
         val first_category: FirstCategory?,
@@ -52,7 +52,7 @@ data class CourseList(
         val lessons_count: Int,
         val lessons_played_time: Int,
         val name: String?,
-        val now_price: Int
+        val now_price: Double
     ) : Parcelable {
         @SuppressLint("ParcelCreator")
         @Parcelize

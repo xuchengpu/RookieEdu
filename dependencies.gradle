@@ -116,7 +116,7 @@ dependencies {
     //endregion
 
     //region jetPack libs
-    def lifecycle_version = "2.3.0-alpha07" 
+    def lifecycle_version = "2.2.0"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
