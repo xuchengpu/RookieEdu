@@ -107,8 +107,8 @@ class CourseReposity(val service: CourseService) : ICourseReposity {
                         val totalPageNum = data?.total_page ?: 0
                         result = LoadResult.Page<Int, CourseList.Data>(
                             data = data?.datas ?: emptyList(),
-                            prevKey = if (pageNum == 1) null else pageNum--,
-                            nextKey = if (pageNum < totalPageNum) pageNum++ else null
+                            prevKey = if (pageNum == 1) null else pageNum-1,
+                            nextKey = if (pageNum < totalPageNum) pageNum+1 else null
                         )
                     }
                 }

@@ -25,11 +25,10 @@ fun imgSrcCompat(iv: ImageView, src: Any?) {
                 else -> src
             }
         }
-        else -> src ?: R.drawable.default_icon
+        else -> src ?: R.drawable.icon_default_header
     }
-    val image = src ?: R.drawable.icon_default_header
     Glide.with(iv)
-        .load(image)
+        .load(imgRes)
         .into(iv)
 }
 

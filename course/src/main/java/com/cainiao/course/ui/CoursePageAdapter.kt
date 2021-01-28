@@ -30,6 +30,8 @@ class CoursePageAdapter :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CourseViewHolder {
         return CourseViewHolder.create(parent)
     }
+
+
 }
 
 class CourseItemCallBack : DiffUtil.ItemCallback<CourseList.Data>() {

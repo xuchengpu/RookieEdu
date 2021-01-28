@@ -62,7 +62,9 @@ class KtHttpLogInterceptor(block: (KtHttpLogInterceptor.() -> Unit)? = null) : I
         //请求
         val request = chain.request()
         //响应
-        return kotlin.runCatching { chain.proceed(request) }
+        return kotlin.runCatching {
+            chain.proceed(request)
+        }
             .onFailure {
                 it.printStackTrace()
                 logIt(
@@ -233,7 +235,7 @@ class KtHttpLogInterceptor(block: (KtHttpLogInterceptor.() -> Unit)? = null) : I
         private const val TAG = "<KtHttp>"//默认的TAG
 
         //时间格式化
-        const val MILLIS_PATTERN = "yyyy-MM-dd HH:mm:ss.SSSXXX"
+        const val MILLIS_PATTERN = "yyyy-MM-dd HH:mm:ss"
 
         //转化为格式化的时间字符串
         fun toDateTimeStr(millis: Long, pattern: String): String {

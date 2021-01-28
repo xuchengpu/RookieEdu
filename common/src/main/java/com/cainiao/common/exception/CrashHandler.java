@@ -261,7 +261,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
                 s = reader.readLine();
                 if (s == null) break;
                 //由于目前尚未确定以何种方式发送，所以先打出log日志。
-                Log.i("info", s.toString());
+                Log.i("TAG", s.toString());
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
