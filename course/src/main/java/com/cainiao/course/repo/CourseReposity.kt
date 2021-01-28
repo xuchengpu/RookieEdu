@@ -49,7 +49,7 @@ class CourseReposity(val service: CourseService) : ICourseReposity {
 
     }
 
-    private val pageSize = 20
+    private val pageSize = 10
     override suspend fun getCourseList(
         course_type: Int,
         code: String,
@@ -60,7 +60,7 @@ class CourseReposity(val service: CourseService) : ICourseReposity {
         val pagingConfig = PagingConfig(
             pageSize = pageSize,
             prefetchDistance = 5,
-            initialLoadSize = 20,
+            initialLoadSize = 10,
             maxSize = pageSize * 3
         )
         return Pager(config = pagingConfig, null) {
