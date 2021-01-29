@@ -87,14 +87,14 @@ class CourseReposity(val service: CourseService) : ICourseReposity {
         override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CourseList.Data> {
             var result: LoadResult<Int, CourseList.Data> =
                 LoadResult.Error<Int, CourseList.Data>(Exception("加载中"))
-            var pageNum = params.key ?: 1
+            val pageNum = params.key ?: 1
             service.getCourseList(
                 course_type,
                 code,
                 difficulty,
                 is_free,
                 q,
-                page = pageNum,
+                page = pageNum
             )
                 .serverData()
                 .onSuccess {

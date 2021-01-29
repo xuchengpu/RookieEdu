@@ -1,6 +1,7 @@
 package com.cainiao.course.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,8 @@ import com.cainiao.course.databinding.FragmentCourseBinding
 import com.cainiao.course.databinding.PopCourseTypeBinding
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.onCompletion
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -49,16 +52,16 @@ class CourseFragment : BaseFragment() {
                                 tab.text = item.title
                             }
                         )
-
                     }
-                    tlCategoryCourse.selectTab(tab)
 
+                }
+                isLoading.observe(viewLifecycleOwner) {
+                    pbFragmentCourse.visibility = if (it) View.VISIBLE else View.GONE
                 }
                 tlCategoryCourse.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
 
                     override fun onTabSelected(tab: TabLayout.Tab?) {
                         val courseTypes = liveCourseType.value
-                        val count = tlCategoryCourse.tabCount
 
                         val index = tab?.position ?: 0
                         code = if (index > 0) {
@@ -69,7 +72,9 @@ class CourseFragment : BaseFragment() {
 
                     override fun onTabUnselected(tab: TabLayout.Tab?) {}
 
-                    override fun onTabReselected(tab: TabLayout.Tab?) {}
+                    override fun onTabReselected(tab: TabLayout.Tab?) {
+
+                    }
 
                 })
 
@@ -79,16 +84,17 @@ class CourseFragment : BaseFragment() {
                     pbFragmentCourse.visibility = View.VISIBLE
                 } else {
                     pbFragmentCourse.visibility = View.GONE
-                }
-                // getting the error
-                val error = when {
-                    loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
-                    loadState.append is LoadState.Error -> loadState.append as LoadState.Error
-                    loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
-                    else -> null
-                }
-                error?.let {
-                    ToastUtils.showShort(it.error.message)
+
+                    // getting the error
+                    val error = when {
+                        loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
+                        loadState.append is LoadState.Error -> loadState.append as LoadState.Error
+                        loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
+                        else -> null
+                    }
+                    error?.let {
+                        ToastUtils.showShort(it.error.message)
+                    }
                 }
 
             }
@@ -100,13 +106,11 @@ class CourseFragment : BaseFragment() {
 
     private fun refreshData(code: String, courseType: Int = -1) {
         lifecycleScope.launchWhenCreated {
-            viewModel.apply {
-                getCourseList(code = code, course_type = courseType).collect {
-                    viewModel.courseAdapter.submitData(it)
-                    mBinding.rvCourse.scrollToPosition(0)
-                }
+           viewModel.getCourseList(code = code, course_type = courseType).collectLatest {
+                viewModel.courseAdapter.submitData(it)
             }
         }
+
     }
 
     override fun getLayoutRes(): Int {

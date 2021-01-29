@@ -18,11 +18,11 @@ import com.cainiao.course.net.CourseList
  * 热爱生活每一天！
  */
 class CoursePageAdapter :
-    PagingDataAdapter<CourseList.Data, CourseViewHolder>(CourseItemCallBack()) {
+    PagingDataAdapter<CourseList.Data, CourseViewHolder>(differCallback) {
 
     override fun onBindViewHolder(holder: CourseViewHolder, position: Int) {
-        getItem(position)?.apply {
-            holder.bind(this)
+        getItem(position)?.let {
+            holder.bind(it)
         }
 
     }
@@ -31,19 +31,21 @@ class CoursePageAdapter :
         return CourseViewHolder.create(parent)
     }
 
+    companion object {
+        private val differCallback = object : DiffUtil.ItemCallback<CourseList.Data>() {
+            override fun areItemsTheSame(
+                oldItem: CourseList.Data,
+                newItem: CourseList.Data
+            ) = oldItem.id == newItem.id
+//            ) = false
 
-}
-
-class CourseItemCallBack : DiffUtil.ItemCallback<CourseList.Data>() {
-    override fun areItemsTheSame(oldItem: CourseList.Data, newItem: CourseList.Data): Boolean {
-        return oldItem.id == newItem.id
+            override fun areContentsTheSame(
+                oldItem: CourseList.Data,
+                newItem: CourseList.Data
+            ) = oldItem == newItem
+        }
 
     }
-
-    override fun areContentsTheSame(oldItem: CourseList.Data, newItem: CourseList.Data): Boolean {
-        return oldItem == newItem
-    }
-
 }
 
 class CourseViewHolder(private val binding: ItemCourseBinding) :

@@ -108,7 +108,7 @@ dependencies {
     implementation("androidx.core:core-ktx:1.2.0")
     implementation 'androidx.fragment:fragment-ktx:1.2.4'
     implementation 'androidx.activity:activity-ktx:1.1.0'
-    implementation "androidx.constraintlayout:constraintlayout:2.0.4"
+    implementation "androidx.constraintlayout:constraintlayout:2.0.2"
 
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'com.google.android.material:material:1.2.1'
@@ -134,7 +134,7 @@ dependencies {
     // optional - Test helpers
     testImplementation "androidx.room:room-testing:$room_version"
 
-    def paging_version = "3.0.0-alpha11"
+    def paging_version = "3.0.0-alpha07"
 
     implementation "androidx.paging:paging-runtime:$paging_version"
 
