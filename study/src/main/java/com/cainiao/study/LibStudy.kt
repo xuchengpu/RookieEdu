@@ -2,11 +2,13 @@ package com.cainiao.study
 
 import com.cainiao.common.network.KtRetrofit
 import com.cainiao.study.net.StudyService
+import com.cainiao.study.repo.IStudyResource
 import com.cainiao.study.repo.StudyResource
 import com.cainiao.study.ui.StudyViewModel
 import com.cniao5.common.utils.getBaseHost
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.parameter.parametersOf
+import org.koin.dsl.bind
 import org.koin.dsl.module
 
 /**
@@ -21,7 +23,8 @@ val studyModules = module {
     }
     single {
         StudyResource(get())
-    }
+    } bind IStudyResource::class
+
     viewModel {
         StudyViewModel(get())
     }

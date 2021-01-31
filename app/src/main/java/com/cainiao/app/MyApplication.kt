@@ -4,6 +4,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.cainiao.common.BaseApplication
 import com.cainiao.common.ktx.application
 import com.cainiao.course.courseModules
+import com.cainiao.home.homeModules
 import com.cainiao.login.loginModules
 import com.cainiao.mine.mineModules
 import com.cainiao.study.studyModules
@@ -17,7 +18,7 @@ import org.koin.core.context.loadKoinModules
  * 热爱生活每一天！
  */
 class MyApplication : BaseApplication() {
-    private val modules = listOf(loginModules, courseModules,studyModules, serviceModules, mineModules)
+    private val modules = listOf(loginModules, homeModules,courseModules,studyModules, serviceModules, mineModules)
 
     override fun initConfig() {
         super.initConfig()

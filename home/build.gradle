@@ -19,4 +19,6 @@ android {
 dependencies {
     //from dependencies.gradle
     implementation project(path: ':service')
+    //from dependencies.gradle
+    implementation 'com.youth.banner:banner:2.1.0'
 }

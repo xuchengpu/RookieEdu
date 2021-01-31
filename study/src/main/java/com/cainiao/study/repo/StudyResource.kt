@@ -17,6 +17,7 @@ import com.xcp.service.network.onBizzError
 import com.xcp.service.network.onBizzOK
 import com.xcp.service.network.onFailure
 import com.xcp.service.network.onSuccess
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -134,8 +135,7 @@ class StudyItemPagingSource(val service: StudyService) : PagingSource<Int, Studi
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, StudiedRsp.Data> {
         var result: LoadResult<Int, StudiedRsp.Data> =
             LoadResult.Error<Int, StudiedRsp.Data>(Exception("加载中..."))
-        val firstPage = params.key ?: 1
-        var nextPage = firstPage + 1
+        var firstPage = params.key ?: 1
         service.getStudyList(firstPage, params.loadSize)
             .serverData()
             .onSuccess {
@@ -147,11 +147,11 @@ class StudyItemPagingSource(val service: StudyService) : PagingSource<Int, Studi
                     LogUtils.i("获取学习过的课程列表 BizOK $data")
                     val totalPage = data?.total_page ?: 0
                     //加载下一页的key 如果传null就说明到底了
-                    val nextKey = if (nextPage <= totalPage) nextPage else null
+                    val nextPage = if (firstPage < totalPage) firstPage++ else null
                     result = LoadResult.Page<Int, StudiedRsp.Data>(
                         data?.datas ?: emptyList(),
                         null,
-                        nextKey
+                        nextPage
                     )
                 }
             }
@@ -163,4 +163,9 @@ class StudyItemPagingSource(val service: StudyService) : PagingSource<Int, Studi
 
     }
 
+}
+
+suspend fun simple(): List<Int> {
+    delay(1000) // 假装我们在这里做了一些异步的事情
+    return listOf(1, 2, 3)
 }

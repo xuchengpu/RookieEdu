@@ -1,9 +1,10 @@
-package com.cainiao.home
+package com.cainiao.home.ui
 
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import com.cainiao.common.base.BaseFragment
+import com.cainiao.home.R
 import com.cainiao.home.databinding.FragmentHomeBinding
 
 /**
@@ -16,6 +17,6 @@ class HomeFragment :BaseFragment(){
         return FragmentHomeBinding.bind(view)
     }
 
-    override fun getLayoutRes()=R.layout.fragment_home
+    override fun getLayoutRes()= R.layout.fragment_home
 
 }
