@@ -2,9 +2,12 @@ package com.cainiao.home.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cainiao.home.databinding.ItemHomeBinding
-import com.cainiao.home.net.HomeList
+import com.cainiao.home.net.*
+import com.cainiao.home.ui.HomeFragment
 
 /**
  * Created by 许成谱 on 2021/1/31 0031 10:41.
@@ -12,10 +15,10 @@ import com.cainiao.home.net.HomeList
  * 热爱生活每一天！
  */
 class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeAdapterVH>() {
-    private var datas: HomeList? = null
+    private val homeList = ArrayList<HomeFragment.HomeData>()
 
-    class HomeAdapterVH(itemHomeBinding: ItemHomeBinding) :
-        RecyclerView.ViewHolder(itemHomeBinding.root) {
+    class HomeAdapterVH(val binding: ItemHomeBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         companion object {
             fun create(parent: ViewGroup): HomeAdapterVH {
                 val mBinding =
@@ -24,15 +27,65 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeAdapterVH>() {
             }
         }
 
-        fun bind() {
+        fun bind(homeData: HomeFragment.HomeData) {
+            binding.title = homeData.title
+            setAdapter(homeData)
+            binding.executePendingBindings()
+        }
 
+        private fun setAdapter(item: HomeFragment.HomeData) {
+
+            binding.rvItemHome.adapter = when (item.type) {
+                HomeFragment.TYPE_JOB_CLASS -> {
+                    binding.rvItemHome.layoutManager = GridLayoutManager(itemView.context, 2)
+                    JobClassAdapter(item.obj as JobClassList)
+                }
+                HomeFragment.TYPE_NEW_CLASS -> {
+                    binding.rvItemHome.layoutManager =
+                        LinearLayoutManager(itemView.context, RecyclerView.VERTICAL, false)
+                    HomeCourseAdapter(item.obj as NewClassList)
+                }
+                HomeFragment.TYPE_LIMIT_FREE -> {
+                    binding.rvItemHome.layoutManager =
+                        LinearLayoutManager(itemView.context, RecyclerView.VERTICAL, false)
+                    HomeCourseAdapter(item.obj as LimitFreeList)
+                }
+                HomeFragment.TYPE_ANDROID -> {
+                    binding.rvItemHome.layoutManager =
+                        LinearLayoutManager(itemView.context, RecyclerView.VERTICAL, false)
+                    HomeCourseAdapter(item.obj as AndroidSelection)
+                }
+                HomeFragment.TYPE_AI -> {
+                    binding.rvItemHome.layoutManager =
+                        LinearLayoutManager(itemView.context, RecyclerView.VERTICAL, false)
+                    HomeCourseAdapter(item.obj as AISelection)
+                }
+                HomeFragment.TYPE_BD -> {
+                    binding.rvItemHome.layoutManager =
+                        LinearLayoutManager(itemView.context, RecyclerView.VERTICAL, false)
+                    HomeCourseAdapter(item.obj as BDList)
+                }
+                HomeFragment.TYPE_10W -> {
+                    binding.rvItemHome.layoutManager =
+                        LinearLayoutManager(itemView.context, RecyclerView.VERTICAL, false)
+                    HomeCourseAdapter(item.obj as Suggest10w)
+                }
+                HomeFragment.TYPE_TEACHER -> {
+                    binding.rvItemHome.layoutManager =
+                        LinearLayoutManager(itemView.context, RecyclerView.HORIZONTAL, false)
+                    TeacherAdapter(item.obj as PopTeacherList)
+                }
+                else -> error("error type ${item.type}")
+            }
         }
 
 
     }
 
-    fun updateList() {
-
+    fun updateList(homeList: ArrayList<HomeFragment.HomeData>) {
+        this.homeList.clear()
+        this.homeList.addAll(homeList)
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeAdapterVH {
@@ -41,10 +94,10 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeAdapterVH>() {
     }
 
     override fun onBindViewHolder(holder: HomeAdapterVH, position: Int) {
-        holder.bind()
+        holder.bind(homeList[position])
     }
 
     override fun getItemCount(): Int {
-        return datas?.size ?: 0
+        return homeList.size
     }
 }

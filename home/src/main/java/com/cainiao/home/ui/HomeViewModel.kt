@@ -8,8 +8,20 @@ import com.cainiao.home.repo.IHomeReposity
  * qq:1550540124
  * 热爱生活每一天！
  */
-class HomeViewModel(val reposity: IHomeReposity):BaseViewModel() {
+class HomeViewModel(val reposity: IHomeReposity) : BaseViewModel() {
 
+    val liveBanner = reposity.liveBanner
+    val liveHomeList = reposity.liveHomeList
+
+    fun getHomeList() = serverAwait {
+        reposity.getHomeList()
+    }
+
+    fun getBanner() = serverAwait {
+        reposity.getBannerDatas()
+    }
+
+    suspend fun getModuleDatas(moduleId: Int) = reposity.getModuleDatas(moduleId)
 
 
 }

@@ -22,6 +22,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MineFragment : BaseFragment() {
 
     private val viewModel: MineViewModel by viewModel()
+
     override fun bindView(view: View, savedInstanceState: Bundle?): ViewDataBinding? {
         return FragmentMineBinding.bind(view).apply {
             vm = viewModel
