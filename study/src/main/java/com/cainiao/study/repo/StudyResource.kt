@@ -7,10 +7,8 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.PagingSource
 import com.blankj.utilcode.util.LogUtils
-import com.cainiao.study.net.BoughtRsp
-import com.cainiao.study.net.StudiedRsp
-import com.cainiao.study.net.StudyInfoRsp
-import com.cainiao.study.net.StudyService
+import com.cainiao.common.model.SingleLiveData
+import com.cainiao.study.net.*
 import com.cniao5.common.network.support.serverData
 import com.cniao5.common.utils.getBaseHost
 import com.xcp.service.network.onBizzError
@@ -125,6 +123,69 @@ class StudyResource(private val service: StudyService) : IStudyResource {
 
     }
 
+    private val _livePermission = MutableLiveData<HasCoursePermission>()
+    private val _liveChapterList = MutableLiveData<ChapterListRsp>()
+    private val _livePlayCourse = SingleLiveData<PlayCourseRsp>()
+
+
+    override val livePermissionResult: LiveData<HasCoursePermission> = _livePermission
+    override val liveChapterList: LiveData<ChapterListRsp> = _liveChapterList
+    override val livePlayCourse: SingleLiveData<PlayCourseRsp> = _livePlayCourse
+
+    override suspend fun hasPermission(courseId: Int) {
+        service.getCoursePermission(courseId)
+            .serverData()
+            .onSuccess {
+                //只要不是接口响应成功，
+                onBizzError {  code, message ->
+                    LogUtils.w("学习权限 BizError $code,$message")
+                }
+                onBizzOK<HasCoursePermission> { code, data, message ->
+                    _livePermission.value = data
+                    LogUtils.i("学习权限 BizOK $data")
+                    return@onBizzOK
+                }
+            }.onFailure {
+                LogUtils.e("学习权限 接口异常 ${it.message}")
+            }
+    }
+
+    override suspend fun getChapters(courseId: Int) {
+        service.getCourseChapter(courseId)
+            .serverData()
+            .onSuccess {
+                //只要不是接口响应成功，
+                onBizzError { code, message ->
+                    LogUtils.w("课时章节 BizError $code,$message")
+                }
+                onBizzOK<ChapterListRsp> { code, data, message ->
+                    _liveChapterList.value = data
+                    LogUtils.i("课时章节 BizOK $data")
+                    return@onBizzOK
+                }
+            }.onFailure {
+                LogUtils.e("课时章节 接口异常 ${it.message}")
+            }
+    }
+
+    override suspend fun getPlayInfo(key: String) {
+        service.getCoursePlayUrl(key)
+            .serverData()
+            .onSuccess {
+                //只要不是接口响应成功，
+                onBizzError { code, message ->
+                    LogUtils.w("课时播放信息 BizError $code,$message")
+                }
+                onBizzOK<PlayCourseRsp> { code, data, message ->
+                    _livePlayCourse.value = data
+                    LogUtils.i("课时播放信息 BizOK $data")
+                    return@onBizzOK
+                }
+            }.onFailure {
+                LogUtils.e("课时播放信息 接口异常 ${it.message}")
+            }
+    }
+
 }
 
 /**
@@ -162,10 +223,5 @@ class StudyItemPagingSource(val service: StudyService) : PagingSource<Int, Studi
         return result
 
     }
-
 }
 
-suspend fun simple(): List<Int> {
-    delay(1000) // 假装我们在这里做了一些异步的事情
-    return listOf(1, 2, 3)
-}

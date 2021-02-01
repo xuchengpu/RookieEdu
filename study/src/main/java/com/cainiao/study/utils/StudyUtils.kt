@@ -1,4 +1,4 @@
-package com.cniao5.study.utils
+package com.cainiao.study.utils
 
 import androidx.databinding.BindingAdapter
 import com.cainiao.study.net.StudiedRsp

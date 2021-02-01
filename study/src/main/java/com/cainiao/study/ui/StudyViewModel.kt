@@ -35,4 +35,6 @@ class StudyViewModel(private val resource: StudyResource) : BaseViewModel() {
 
     suspend fun pagingData()= resource.pagingData().asLiveData()
 
+
+
 }
