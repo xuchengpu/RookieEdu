@@ -3,6 +3,7 @@ package com.cainiao.home.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.cainiao.common.webview.WebViewActivity
 import com.cainiao.home.databinding.ItemJobClassBinding
 import com.cainiao.home.net.JobClassList
 
@@ -34,10 +35,11 @@ class JobClassAdapter(val jobClassList: JobClassList) : RecyclerView.Adapter<Job
                 return VH(itemBinding)
             }
         }
+
         fun bind(info: JobClassList.JobClassListItem) {
             binding.url = info.course?.img_url
             itemView.setOnClickListener {
-//                WebActivity.openUrl(it.context, info.course?.h5site ?: "https://m.cniao5.com")
+                WebViewActivity.openUrl(it.context, info.course?.h5site ?: "https://m.cniao5.com")
             }
             binding.executePendingBindings()
         }

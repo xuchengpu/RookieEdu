@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply from: '../dependencies.gradle'
+apply plugin: 'kotlin-android'
 
 android {
     //from dependencies.gradle
@@ -10,6 +11,9 @@ dependencies {
 
     //Androidx Jetpack最新的startUp组件
     api('androidx.startup:startup-runtime:1.0.0-alpha03')
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.2.0'
 
     //okhttp
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
@@ -32,4 +36,8 @@ dependencies {
 
     //腾讯的key-value
     implementation("com.tencent:mmkv-static:1.2.1")
+    //webview
+    implementation 'com.just.agentweb:agentweb-androidx:4.1.4' // (必选)
+    implementation 'com.just.agentweb:filechooser-androidx:4.1.4'// (可选)
+//    implementation 'com.download.library:downloader-androidx:4.1.4'// (可选)
 }
