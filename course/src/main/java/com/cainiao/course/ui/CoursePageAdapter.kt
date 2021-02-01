@@ -9,6 +9,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import com.cainiao.common.webview.WebViewActivity
 import com.cainiao.course.databinding.ItemCourseBinding
 import com.cainiao.course.net.CourseList
 
@@ -65,6 +66,9 @@ class CourseViewHolder(private val binding: ItemCourseBinding) :
     fun bind(data: CourseList.Data?) {
         binding.info = data
         binding.tvOldPriceItemCourse.paint.flags += Paint.STRIKE_THRU_TEXT_FLAG
+        itemView.setOnClickListener { v ->
+            WebViewActivity.openUrl(v.context, "https://m.cniao5.com/course/${data?.id}")
+        }
         binding.executePendingBindings()
     }
 }

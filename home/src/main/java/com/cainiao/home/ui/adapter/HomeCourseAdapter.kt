@@ -4,6 +4,7 @@ import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.cainiao.common.webview.WebViewActivity
 import com.cainiao.home.databinding.ItemHomeCourseBinding
 import com.cainiao.home.databinding.ItemJobClassBinding
 import com.cainiao.home.net.HomeCourseItem
@@ -33,7 +34,11 @@ class HomeCourseAdapter(private val mList: List<HomeCourseItem>) :
         companion object {
             fun create(parent: ViewGroup): VH {
                 val itemBinding =
-                    ItemHomeCourseBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                    ItemHomeCourseBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
                 return VH(itemBinding)
             }
         }
@@ -41,8 +46,8 @@ class HomeCourseAdapter(private val mList: List<HomeCourseItem>) :
         fun bind(info: HomeCourseItem) {
             binding.info = info
             binding.tvOldPriceItemCourse.paintFlags += Paint.STRIKE_THRU_TEXT_FLAG
-            itemView.setOnClickListener {
-//                WebActivity.openUrl(it.context, info.course?.h5site ?: "https://m.cniao5.com")
+            itemView.setOnClickListener { v ->
+                WebViewActivity.openUrl(v.context, "https://m.cniao5.com/course/${info.id}")
             }
             binding.executePendingBindings()
         }
