@@ -123,8 +123,8 @@ class StudyResource(private val service: StudyService) : IStudyResource {
 
     }
 
-    private val _livePermission = MutableLiveData<HasCoursePermission>()
-    private val _liveChapterList = MutableLiveData<ChapterListRsp>()
+    private val _livePermission = SingleLiveData<HasCoursePermission>()
+    private val _liveChapterList = SingleLiveData<ChapterListRsp>()
     private val _livePlayCourse = SingleLiveData<PlayCourseRsp>()
 
 
@@ -137,7 +137,7 @@ class StudyResource(private val service: StudyService) : IStudyResource {
             .serverData()
             .onSuccess {
                 //只要不是接口响应成功，
-                onBizzError {  code, message ->
+                onBizzError { code, message ->
                     LogUtils.w("学习权限 BizError $code,$message")
                 }
                 onBizzOK<HasCoursePermission> { code, data, message ->

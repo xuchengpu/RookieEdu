@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.PagingData
 import com.cainiao.common.base.BaseFragment
 import com.cainiao.study.R
 import com.cainiao.study.databinding.FragmentStudyBinding
+import com.cainiao.study.ui.play.PlayActivity
 import com.xcp.service.repo.DbHelper
+import kotlinx.android.synthetic.main.fragment_study.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -17,9 +20,16 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  */
 class StudyFragment : BaseFragment() {
     private val viewModel: StudyViewModel by viewModel()
+
+    //我的学习列表适配器
+    val adapter = StudyPageAdapter {
+        PlayActivity.openPlay(requireContext(), it)
+    }
+
     override fun bindView(view: View, savedInstanceState: Bundle?): ViewDataBinding? {
         return FragmentStudyBinding.bind(view).apply {
             vm = viewModel
+            adapter = this@StudyFragment.adapter
         }
     }
 
@@ -28,7 +38,12 @@ class StudyFragment : BaseFragment() {
         DbHelper.getLiveUserInfo(requireContext()).observeKt {
             viewModel.obUserInfo.set(it)
             viewModel.getStudyData()
-            viewModel.adapter.refresh()
+            if (it == null) {
+                lifecycleScope.launchWhenCreated {
+                    adapter.submitData(PagingData.empty())//清除列表
+                }
+            }
+
         }
         viewModel.apply {
             //方式一 传统方式
@@ -37,9 +52,9 @@ class StudyFragment : BaseFragment() {
 //            }
             //方式二 paging方式
             lifecycleScope.launchWhenCreated {
-                viewModel. pagingData().observeKt {
+                viewModel.pagingData().observeKt {
                     it?.let {
-                        viewModel.adapter.submitData(lifecycle, it)
+                        adapter.submitData(lifecycle, it)
                     }
                 }
             }

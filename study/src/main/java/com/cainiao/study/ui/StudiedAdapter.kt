@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.cainiao.study.databinding.ItemCourseStudyBinding
 import com.cainiao.study.net.StudiedRsp
+import com.cainiao.study.ui.play.PlayActivity
 
 /**
  * Created by 许成谱 on 2021/1/25 10:50.

@@ -22,7 +22,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         super.initConfig()
         viewModel.apply {
             registerRsp.observeKt {
-                if (it.is_register == RegisterRsp.FLAG_IS_REGISTERED) {
+                if (it?.is_register == RegisterRsp.FLAG_IS_REGISTERED) {
                     relogin()
                 }
             }

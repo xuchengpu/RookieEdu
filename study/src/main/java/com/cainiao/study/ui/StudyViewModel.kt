@@ -23,9 +23,6 @@ class StudyViewModel(private val resource: StudyResource) : BaseViewModel() {
     val liveBoughtList: LiveData<BoughtRsp> = resource.liveBoughtList
     //用户信息
     val obUserInfo = ObservableField<UserInfo>()
-    //我的学习列表适配器
-    val adapter = StudyPageAdapter()
-
 
     fun getStudyData() = serverAwait {
         resource.getStudyInfo()

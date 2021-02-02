@@ -22,11 +22,15 @@ import com.cainiao.study.net.StudiedRsp
  * ----------------------------------------------------------------
  *
  */
-class StudyPageAdapter : PagingDataAdapter<StudiedRsp.Data, StudiedVH>(differCallback) {
+class StudyPageAdapter(val block: (StudiedRsp.Data) -> Unit) :
+    PagingDataAdapter<StudiedRsp.Data, StudiedVH>(differCallback) {
 
     override fun onBindViewHolder(holder: StudiedVH, position: Int) {
-        getItem(position)?.let {
-            holder.bind(it)
+        getItem(position)?.let {data->
+            holder.bind(data)
+            holder.itemView.setOnClickListener {
+                block(data)
+            }
         }
     }
 

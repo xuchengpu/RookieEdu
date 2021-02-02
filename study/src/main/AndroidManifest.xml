@@ -3,7 +3,11 @@
     package="com.cainiao.study">
 
     <application>
-        <activity android:name=".ui.play.PlayActivity"></activity>
+        <activity
+            android:name=".ui.play.PlayActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

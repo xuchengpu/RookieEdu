@@ -4,8 +4,10 @@
 
     <data>
 
-        <import type="com.cniao5.study.utils.StudyUtils" />
-
+        <import type="com.cainiao.study.utils.StudyUtils" />
+        <variable
+            name="adapter"
+            type="com.cainiao.study.ui.StudyPageAdapter" />
         <variable
             name="vm"
             type="com.cainiao.study.ui.StudyViewModel" />
@@ -110,7 +112,7 @@
             android:id="@+id/tv_total_minute_study"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{vm.liveStudyInfo.total_study_time+``}"
+            android:text="@{vm.liveStudyInfo.total_study_time/60+``}"
             android:textColor="@color/colorPrimaryText"
             android:textSize="14sp"
             app:layout_constraintBaseline_toBaselineOf="@id/tv_today_minute_study"
@@ -180,7 +182,7 @@
             android:layout_height="0dp"
             android:background="@color/colorWindowBackGround"
             android:orientation="vertical"
-            app:adapter="@{vm.adapter}"
+            app:adapter="@{adapter}"
             tools:itemCount="16"
             tools:listitem="@layout/item_course_study"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

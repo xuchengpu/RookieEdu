@@ -5,6 +5,7 @@ import com.cainiao.study.net.StudyService
 import com.cainiao.study.repo.IStudyResource
 import com.cainiao.study.repo.StudyResource
 import com.cainiao.study.ui.StudyViewModel
+import com.cainiao.study.ui.play.PlayViewModel
 import com.cniao5.common.utils.getBaseHost
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.parameter.parametersOf
@@ -21,9 +22,14 @@ val studyModules = module {
         get<KtRetrofit> { parametersOf(getBaseHost()) }
             .getService(StudyService::class.java)
     }
+
     single {
         StudyResource(get())
     } bind IStudyResource::class
+
+    viewModel {
+        PlayViewModel(get())
+    }
 
     viewModel {
         StudyViewModel(get())
