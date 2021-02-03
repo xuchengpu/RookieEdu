@@ -3,6 +3,7 @@ package com.cainiao.app
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.blankj.utilcode.util.LogUtils
 import com.cainiao.app.databinding.ActivityMainBinding
 import com.cainiao.common.base.BaseActivity
 import com.cainiao.common.widget.BnvMediator
@@ -10,6 +11,7 @@ import com.cainiao.course.ui.CourseFragment
 import com.cainiao.home.ui.HomeFragment
 import com.cainiao.mine.MineContainerFragment
 import com.cainiao.study.ui.StudyFragment
+import com.mcxiaoke.packer.helper.PackerNg
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     companion object {
@@ -43,6 +45,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 vp2.isUserInputEnabled=false
             }.attach()
         }
+        //渠道号获取
+        val channelStr = PackerNg.getChannel(this)
+        LogUtils.i("当前渠道号$channelStr")
     }
 
     override fun initData() {

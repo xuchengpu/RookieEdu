@@ -36,6 +36,8 @@ buildscript {
         classpath "org.koin:koin-gradle-plugin:$koin_version"
 
         classpath 'com.didichuxing.doraemonkit:dokitx-plugin:3.3.5'
+        //packer ng plugin 快速打包 1、插件依赖
+        classpath "com.mcxiaoke.packer-ng:plugin:2.0.1"
     }
 }
 

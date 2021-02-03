@@ -33,10 +33,7 @@ class MineFragment : BaseFragment() {
                 ARouter.getInstance().build("/login/login").navigation()
             }
             tvUserNameMine.setOnClickListener {
-                val info = viewModel.userInfo.value
-                if (info == null) {
-                    ARouter.getInstance().build("/login/login").navigation()
-                }
+                ivUserIconMine.callOnClick()
             }
             ivUserIconMine.setOnClickListener {
                 val info = viewModel.userInfo.value
